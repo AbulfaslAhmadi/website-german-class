@@ -3,13 +3,15 @@ const first = document.querySelector(".first-greeting")
 
 function firstFunc() {
   first.classList.remove("greeting-remover")
-  first.classList.remove("greeting-none")
   setTimeout(function() {
-    first.classList.add("greeting-none")
+    first.classList.remove("greeting-none")
     setTimeout(function() {
-      first.classList.add("greeting-remover")
-    }, 1000)
-  }, 5000)
+      first.classList.add("greeting-none")
+      setTimeout(function() {
+        first.classList.add("greeting-remover")
+      }, 1000)
+    }, 5000)
+  })
 }
 
 // second greeting 
@@ -17,13 +19,31 @@ const second = document.querySelector(".second-greeting")
 
 function secondFunc() {
   second.classList.remove("greeting-remover")
-  second.classList.remove("greeting-none")
   setTimeout(function() {
-    second.classList.add("greeting-none")
+    second.classList.remove("greeting-none")
     setTimeout(function() {
-      second.classList.add("greeting-remover")
-    }, 1000)
-  }, 5000)
+      second.classList.add("greeting-none")
+      setTimeout(function() {
+        second.classList.add("greeting-remover")
+      }, 1000)
+    }, 5000)
+  })
+}
+
+// cookie hint
+const cookie = document.querySelector(".cookie")
+
+function cookieFunc() {
+  cookie.classList.remove("greeting-remover")
+  setTimeout(function() {
+    cookie.classList.remove("greeting-none")
+    setTimeout(function() {
+      cookie.classList.add("greeting-none");
+      setTimeout(function() {
+        cookie.classList.add("greeting-remover")
+      }, 1000)
+    }, 5000)
+  }, 1000)
 }
 
 // cookies checker 
@@ -32,6 +52,9 @@ if (document.cookie.indexOf("besuchteSeite=true") >= 0) {
   secondFunc();
 } else {
   firstFunc();
+  setTimeout(function() {
+    cookieFunc();
+  }, 8000)
   // Setzen des Cookies mit einer Gültigkeit von einem Monat
   var d = new Date();
   d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
