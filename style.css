@@ -24,6 +24,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
 .greetig-style p {
@@ -31,6 +33,10 @@ body {
 }
 
 .greeting-none {
+    opacity: 0;
+}
+
+.greeting-remover {
     display: none;
 }
 
@@ -333,7 +339,8 @@ body {
 }
 
 .four-ref-main-text {
-    text-decoration: 3px #3b5d9f solid underline;
+    border-bottom: 3px solid #3b5d9f;
+    text-decoration: none;
     cursor: pointer;
 }
 

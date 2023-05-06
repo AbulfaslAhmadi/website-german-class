@@ -1,3 +1,44 @@
+// first greeting
+const first = document.querySelector(".first-greeting")
+
+function firstFunc() {
+  first.classList.remove("greeting-remover")
+  first.classList.remove("greeting-none")
+  setTimeout(function() {
+    first.classList.add("greeting-none")
+    setTimeout(function() {
+      first.classList.add("greeting-remover")
+    }, 1000)
+  }, 5000)
+}
+
+// second greeting 
+const second = document.querySelector(".second-greeting")
+
+function secondFunc() {
+  second.classList.remove("greeting-remover")
+  second.classList.remove("greeting-none")
+  setTimeout(function() {
+    second.classList.add("greeting-none")
+    setTimeout(function() {
+      second.classList.add("greeting-remover")
+    }, 1000)
+  }, 5000)
+}
+
+// cookies checker 
+// Überprüfen, ob ein Cookie vorhanden ist
+if (document.cookie.indexOf("besuchteSeite=true") >= 0) {
+  secondFunc();
+} else {
+  firstFunc();
+  // Setzen des Cookies mit einer Gültigkeit von einem Monat
+  var d = new Date();
+  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = "besuchteSeite=true;" + expires + ";path=/";
+}
+
 // klapp func von sec three
 const listOne = document.querySelectorAll(".three-list-main")
 
@@ -53,37 +94,4 @@ for (const element of textElements) {
     }, function() {
     });
   });
-}
-
-// cookies checker 
-// Überprüfen, ob ein Cookie vorhanden ist
-if (document.cookie.indexOf("besuchteSeite=true") >= 0) {
-  secondFunc();
-} else {
-  firstFunc();
-  // Setzen des Cookies mit einer Gültigkeit von einem Monat
-  var d = new Date();
-  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = "besuchteSeite=true;" + expires + ";path=/";
-}
-
-// first greeting
-const first = document.querySelector(".first-greeting")
-
-function firstFunc() {
-  first.classList.remove("greeting-none")
-  setTimeout(function() {
-    first.classList.add("greeting-none")
-  }, 5000) 
-}
-
-// second greeting 
-const second = document.querySelector("second-greeting")
-
-function secondFunc() {
-  second.classList.remove("greeting-none")
-  setTimeout(function() {
-    second.classList.add("greeting-none")
-  }, 5000)
 }
