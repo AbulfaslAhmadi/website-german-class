@@ -50,6 +50,9 @@ function cookieFunc() {
 // Überprüfen, ob ein Cookie vorhanden ist
 if (document.cookie.indexOf("besuchteSeite=true") >= 0) {
   secondFunc();
+  setTimeout(function() {
+    cookieFunc();
+  }, 8000)
 } else {
   firstFunc();
   setTimeout(function() {
