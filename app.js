@@ -11,7 +11,7 @@ function firstFunc() {
         first.classList.add("greeting-remover")
       }, 1000)
     }, 5000)
-  })
+  }, 1000)
 }
 
 // second greeting 
@@ -27,7 +27,7 @@ function secondFunc() {
         second.classList.add("greeting-remover")
       }, 1000)
     }, 5000)
-  })
+  }, 1000)
 }
 
 // cookie hint
@@ -48,22 +48,31 @@ function cookieFunc() {
 
 // cookies checker 
 // Überprüfen, ob ein Cookie vorhanden ist
-if (document.cookie.indexOf("besuchteSeite=true") >= 0) {
-  secondFunc();
+if (localStorage.getItem("besuchteSeite") === "true") {
   setTimeout(function() {
-    cookieFunc();
-  }, 8000)
+    secondFunc();
+    setTimeout(function() {
+      localStorage.setItem("besuchteSeite", "true");
+      cookieFunc();
+    }, 8000)
+  }, 1000)
 } else {
-  firstFunc();
   setTimeout(function() {
-    cookieFunc();
-  }, 8000)
-  // Setzen des Cookies mit einer Gültigkeit von einem Monat
+    firstFunc();
+    setTimeout(function() {
+      localStorage.setItem("besuchteSeite", "true");
+      cookieFunc();
+    }, 8000)
+  }, 1000)
+  // Speichern der Daten im Local Storage mit einer Gültigkeit von einem Monat
   var d = new Date();
   d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = "besuchteSeite=true;" + expires + ";path=/";
+  var expires = d.toUTCString();
+  localStorage.setItem("besuchteSeite", "true");
+  localStorage.setItem("expires", expires);
 }
+
+
 
 // klapp func von sec three
 const listOne = document.querySelectorAll(".three-list-main")
